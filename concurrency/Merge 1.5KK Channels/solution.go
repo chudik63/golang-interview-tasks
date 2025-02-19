@@ -24,6 +24,7 @@ func main() {
 }
 
 func mergeCh(chs ...chan int) chan int {
+	// creating unbuffered channels to enable stack to stack comminucation between goroutines
 	merged := make(chan int)
 
 	poolCh := make(chan chan int)
