@@ -1,7 +1,7 @@
 # Solution
 ## < 1.22
 
-Во-первых, скорее всего ничего. Чтобы это решить необходимо добавить `WaitGroup`, т.к цикл и `main` завершатся быстрее, чем запуститься первая горутина
+First, higly likely nothing. In order to fix this a `WaitGroup` needs to be added, because the loop and `main` will finish faster than the first goroutine starts.
 ```go
 package main
 
@@ -23,7 +23,8 @@ func main() {
 }
 ```
 
-Во-вторых, в зависимости от того, в каком порядке начнут выполняться горутины, вывод может отличаться, но факт, что все цифры по порядку мы не увидим. Ответом может быть, как и 
+Second, depending on the order in which the goroutines start executing, the output may differ, but the fact is that we will not see all the numbers in order. The answer may be either
+
 ```
 5
 5
@@ -31,7 +32,7 @@ func main() {
 5
 5
 ```
-так и, например:
+or, for example,
 ```
 5
 5
@@ -39,13 +40,13 @@ func main() {
 3
 3
 ```
-Какие-то горутины, которые были вызваны на итерации `i = 3`, успели запуститься раньше и захватить переменную в середине цикла.
+Some goroutines that was called on the `i = 3` iteration they managed to start earlier and capture the variable in the middle of the loop.
 
-Проблема в том, что в версиях го до 1.22 подобные вызовы внутри цикла захватывали переменную по указателю. Соответственно горутины, запустившиеся после цикла, ссылались на `i`, которая в конце всего была равна `5`.
+The problem is that in versions before 1.22 such calls inside a loop captures a variable by pointer. Accordingly, goroutines that started after the loop referenced `i`, which at the end was equal to `5`. 
 
-Как решить?
+How to solve it?
 
-1) Передать переменную в аргументы фнукции
+1) Pass the variable as a functon argument
 ```go
 package main
 
@@ -67,7 +68,7 @@ func main() {
 }
 ```
 
-2) Т.н shadowing
+2) Shadowing
 ```go
 package main
 
@@ -92,7 +93,8 @@ func main() {
 ```
 
 ## > 1.22
-Мы увидим все цифры в указанном диапазоне. Однако, гарантировать порядок их вывода нельзя, так как все зависит от планировщика:
+We will see all the digits in the specified range. However, the order of their output cannot be guaranteed, since everything depends on the scheduler:
+
 ```
 4
 1

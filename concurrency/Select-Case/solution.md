@@ -1,13 +1,16 @@
-# Soluion
-1) Создается тип, который представляет собой канал этого же типа (O_o)
-2) Создаем буферизированный канал длины 1
-3) Добавляем в канал этот же канал (o_О)
-4) Нужно понимать, что когда в `select-case` срабатывают несколько кейсов одновременно, он выбирает случайно
-5) На первой итерации у нас по-любому сработает первый или второй `case`
+# Solution
+1) A type is created that represents a channel of the same type (O_o).
 
-Пусть сработал первый `case <-c:`\
-Мы считали значение из канала => он теперь пустой, и на следующей итерации у нас сработает `default` => мы выйдем из цикла с выводом `1`.
+2) A buffered channel of length 1 is created.
 
-Пусть сработал второй `case <-c: c <- c` \
-Мы считали из канала и заново в него положили этот же канал => ничего не изменилось. Далее по кругу.
+3) The same channel is added to the channel (o_О).
 
+4) It is important to understand that when multiple cases in a select-case statement are ready at the same time, one is chosen randomly.
+
+5) On the first iteration, either the first or the second case will definitely trigger.
+
+Case 1: Suppose the first case `case <-c`: triggers.\
+We read a value from the channel => the channel is now empty, and on the next iteration the default case will trigger => we exit the loop with the output 1.
+
+Case 2: Suppose the second case `case <-c: c <- c` triggers.\
+We read from the channel and then put the same channel back into it => nothing changes. This process repeats.

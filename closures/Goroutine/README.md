@@ -13,4 +13,4 @@ func main() {
 
 ```
 # Goroutine
-В цикле на каждой итерации запускается горутина, которая захватывает переменную `i`. Что будет выведено в консоль?
+The loop starts a goroutine capturing `i` on each iteraton. What is the output?

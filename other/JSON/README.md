@@ -26,4 +26,4 @@ func main() {
 }
 ```
 # JSON
-Что будет выведено в консоль?
+What will be printed to the console?

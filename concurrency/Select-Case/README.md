@@ -21,4 +21,4 @@ func main() {
 }
 ```
 # Select-Case
-Что тут происходит?
+What is happening here?
