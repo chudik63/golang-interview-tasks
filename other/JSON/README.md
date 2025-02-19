@@ -25,4 +25,5 @@ func main() {
     fmt.Printf("%#v\n", out)
 }
 ```
+# JSON
 Что будет выведено в консоль?

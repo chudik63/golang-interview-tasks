@@ -14,4 +14,4 @@ func mergeCh(chs ...chan string) stirng {
 }
 ```
 # Merge 1.5KK Channels
-Соединить три канала в один
+Соединить огромное количество каналов в один
