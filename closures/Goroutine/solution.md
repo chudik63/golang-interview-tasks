@@ -40,9 +40,9 @@ or, for example,
 3
 3
 ```
-Some goroutines that was called on the `i = 3` iteration they managed to start earlier and capture the variable in the middle of the loop.
+Some goroutines that was called on the `i = 3` iteration managed to start earlier and capture the variable in the middle of the loop.
 
-The problem is that in versions before 1.22 such calls inside a loop captures a variable by pointer. Accordingly, goroutines that started after the loop referenced `i`, which at the end was equal to `5`. 
+The problem is that in versions before 1.22 such calls inside a loop captures a variable by pointer. Accordingly, goroutines that started after the loop referenced `i`, which at the end is equal to `5`. 
 
 How to solve it?
 
@@ -93,7 +93,7 @@ func main() {
 ```
 
 ## > 1.22
-We will see all the digits in the specified range. However, the order of their output cannot be guaranteed, since everything depends on the scheduler:
+After adding `WaitGroup` we will see all the digits in the specified range. However, the order of their output cannot be guaranteed, since everything depends on the scheduler:
 
 ```
 4
