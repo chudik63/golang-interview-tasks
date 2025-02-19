@@ -52,6 +52,8 @@ func main() {
 
 	wg.Wait()
 
+	close(sema)
+
 	fmt.Println(codes.h)
 }
 
