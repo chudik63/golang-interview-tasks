@@ -1,2 +1,2 @@
 # Solution
-Решение заключается в написании `Worker Pool` или `Semaphore`. Оптимальнее использовать `runtime.NumCPU() * 2` одновременно работающих горутин, чтобы не терять время на переключение контекста, а так же не превышать ограничения и ресурсы.
+The solution is to write a `Worker Pool` or `Semaphore`. It is best to use `runtime.NumCPU() * 2` concurrently running goroutines, so as not to waste time on context switching, and also not to exceed limits and resources.

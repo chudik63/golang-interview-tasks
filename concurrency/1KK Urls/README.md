@@ -12,8 +12,7 @@ func main() {
 
 ```
 # 1KK Urls
-
-Есть миллиард ссылок. Необходимо использовать конкурентность, чтобы эффективно сохранить в хэш-таблице количество ссылок, вернувшие определенный код;
+There are a billion links. Concurrency must be used to efficiently store in a hash table the number of links that returned a certain code:
 ```
     200 - 3
     404 - 1
