@@ -1,23 +1,58 @@
 package main
 
-import "runtime"
+import (
+	"runtime"
+	"sync"
+)
 
 var maxParallel int = runtime.NumCPU() * 2
 
 func main() {
-	// logic
+	count := 1500000
+	chans := make([]chan int, count)
 
-	for item := range mergeCh(ch1, ch2, ch3...) {
-		// reading from merged channel
+	for i, ch := range chans {
+		ch = make(chan int, 1)
+		ch <- i
+		close(ch)
+		chans[i] = ch
+	}
+
+	for item := range mergeCh(chans...) {
+		_ = item
 	}
 }
 
-func mergeCh(chs ...chan string) stirng {
-	poolCh := make(chan chan string, maxParallel)
+func mergeCh(chs ...chan int) chan int {
+	merged := make(chan int)
+
+	poolCh := make(chan chan int)
+
+	wg := &sync.WaitGroup{}
 
 	go func() {
+		defer close(poolCh)
 		for _, ch := range chs {
 			poolCh <- ch
 		}
+	}()
+
+	wg.Add(maxParallel)
+	for i := 0; i < maxParallel; i++ {
+		go func() {
+			defer wg.Done()
+			for ch := range poolCh {
+				for v := range ch {
+					merged <- v
+				}
+			}
+		}()
 	}
+
+	go func() {
+		wg.Wait()
+		close(merged)
+	}()
+
+	return merged
 }

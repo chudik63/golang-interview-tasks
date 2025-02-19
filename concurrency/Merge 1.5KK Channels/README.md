@@ -1,17 +1,26 @@
 ```go
 package main
 
-func main() {
-    // logic
 
-    for item := range mergeCh(ch1, ch2, ch3...) {
-        // reading from merged channel
-    }
+func main() {
+	count := 1500000
+	chans := make([]chan int, count)
+
+	for i, ch := range chans {
+		ch = make(chan int, 1)
+		ch <- i
+		close(ch)
+		chans[i] = ch
+	}
+
+	for item := range mergeCh(chans...) {
+		_ = item
+	}
 }
 
-func mergeCh(chs ...chan string) stirng {
+func mergeCh(chs ...chan string) chan string {
     // channel merging
 }
 ```
 # Merge 1.5KK Channels
-Соединить огромное количество каналов в один
+Merge a large number of channels into one.
