@@ -10,8 +10,8 @@ func main() {
 }
 
 func mergeCh(chs ...chan string) stirng {
-    // changel merging
+    // channel merging
 }
 ```
-# Task4
-Соединить каналы в один
+# Merge 3 Channels
+Соединить три канала в один

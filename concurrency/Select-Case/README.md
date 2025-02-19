@@ -1,5 +1,3 @@
-# Task 1
-
 ```go
 package main
 
@@ -22,5 +20,5 @@ func main() {
 	}
 }
 ```
-
+# Select-Case
 Что тут происходит?
