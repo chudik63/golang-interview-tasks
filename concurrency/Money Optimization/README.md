@@ -42,6 +42,6 @@ func (o *MoneyOptimization) RequestThatCostsMoney(userID string) (response strin
 
 ```
 # Money Optimization
-Есть функция, вызов которой стоит денег - `requestThatCostsMoney`. Ее внутренности не важны. Главное то, что каждый запрос к ней стоит нам денег. Запускается множество горутин, каждая из которых обращается к этой функции. Задача - оптимизировать вызов так, чтобы из нескольких горутин с одинаковыми `userID` в запросе, которые вызывают функцию параллельно, работала только одна и делилась полученным ответов с другими. Таким образом мы не будет терять деньги на лишние вызовы функции с одним и тем же запросом одновременно.
+There is a function that costs money to call - `requestThatCostsMoney`. Its insides are not important. The main thing is that each request to it costs us money. Many goroutines are launched, each of which calls this function. The task is to optimize the call so that out of several goroutines with the same `userID` in the request that call the function in parallel, only one works and shares the received response with the others. This way, we will not lose money on unnecessary function calls with the same request at the same time.
 
-В коде уже заготовлена структура с методом, который является оберткой над функцией `requestThatCostsMoney`, в нем должна содержаться вся логика.
+The code already has a structure with a method that is a wrapper over the `requestThatCostsMoney` function, it should contain all the logic.

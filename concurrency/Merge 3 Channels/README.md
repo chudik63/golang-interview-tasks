@@ -14,4 +14,4 @@ func mergeCh(chs ...chan string) stirng {
 }
 ```
 # Merge 3 Channels
-Соединить три канала в один
+Merge three channels into one
